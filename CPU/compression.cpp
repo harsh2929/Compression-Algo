@@ -47,3 +47,4 @@ int main(int argc, char* argv[]) {
     std::cout << "Compression ratio: " << compression_ratio << std::endl;
     std::cout << "Compression time: " << compression_time << " seconds" << std::endl;
     std::cout << "Max memory usage: " << max_memory_usage << " bytes" << std::endl;
+// add more metrics
