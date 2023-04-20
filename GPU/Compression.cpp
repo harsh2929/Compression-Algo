@@ -4,7 +4,7 @@
 #include <chrono>
 #include <cuda_runtime.h>
 #include <lzma.h>
-
+#directories included
 global void lzma_compress_kernel(uint16_t* input, std::size_t Size_input, uint16_t* output, std::size_t output_size, lzma_preset preset, lzma_check check) {
     lzma_stream strm = LZMA_STREAM_INIT;
     lzma_ret ret = lzma_easy_encoder(&strm, preset, check);
