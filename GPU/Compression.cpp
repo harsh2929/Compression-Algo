@@ -23,7 +23,7 @@ global void lzma_compress_kernel(uint16_t* input, std::size_t Size_input, uint16
     }
     lzma_end(&strm);
 }
-
+#ending lMa
 int main(int argc, char* argv[]) {
    
     if (argc != 2) {
