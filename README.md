@@ -1,4 +1,6 @@
 # Compression Algo
 
-Does cpu/GPU compressions using cuda
+Does CPU/GPU compressions using cuda via lzma algorithm
+
+
  
