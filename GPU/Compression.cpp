@@ -64,8 +64,28 @@ int main(int argc, char* argv[]) {
 
     std::size_t comp_size = lzma_stream_buffer_bound(size_input);
 
-    // Additional functionalities and metrics can be added here
+    // Get compression time
+    double compression_time = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count() / 1000.0;
+    std::cout << "Compression time: " << compression_time << " seconds" << std::endl;
 
+    // Calculate compression ratio
+    double compression_ratio = static_cast<double>(size_input) / static_cast<double>(comp_size);
+    std::cout << "Compression ratio: " << compression_ratio << std::endl;
+
+    // Additional functionality: Save compressed data to a file
+    std::ofstream output_file("compressed.lzma", std::ios::binary);
+    if (output_file) {
+        uint16_t* output_buffer = new uint16_t[comp_size];
+        cudaMemcpy(output_buffer, d_output, comp_size, cudaMemcpyDeviceToHost);
+        output_file.write(reinterpret_cast<char*>(output_buffer), comp_size);
+        output_file.close();
+        delete[] output_buffer;
+        std::cout << "Compressed data saved to compressed.lzma" << std::endl;
+    } else {
+        std::cerr << "Failed to create output file" << std::endl;
+    }
+
+    // Cleanup
     delete[] input_buffer;
     cudaFree(d_input);
     cudaFree(d_output);
